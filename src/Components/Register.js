@@ -3,48 +3,62 @@ import axios from "axios";
 import "./Register.css";
 
 class Register extends Component {
-	state = {};
+	state = {
+		first_name: "",
+		last_name: "",
+		email: "",
+		password: "",
+	};
 
-	handleRegister = () => {
-		const link = "http://127.0.0.1:8000/";
-		const axios = require("axios");
-
-		const Register = () => {
-			try {
-				return axios.post(`${link}users/register/`, {
-					first_name: this.first_name,
-					last_name: this.last_name,
-					password: this.password,
-					email: this.email,
-				});
-			} catch (error) {
-				alert(error);
-			}
-		};
-
-		const showRegistrationResponse = async () => {
-			const data = Register()
-				.then(response => {
-					alert("Zalogowano pomyślnie");
-				})
-				.catch(error => {
-					alert(
-						"Rejestracja nie powiodła się, wypełnij poprawnie formularz"
-					);
-				});
-		};
-		showRegistrationResponse();
+	handleChange = e => {
+		this.setState({
+			[e.target.id]: e.target.value,
+		});
+	};
+	handleRegister = e => {
+		e.preventDefault();
+		console.log(this.state);
+		// const link = "http://127.0.0.1:8000/";
+		// const axios = require("axios");
+		// const Register = () => {
+		// 	try {
+		// 		return axios.post(`${link}users/register/`, {
+		// 			first_name: this.first_name,
+		// 			last_name: this.last_name,
+		// 			password: this.password,
+		// 			email: this.email,
+		// 		});
+		// 	} catch (error) {
+		// 		alert(error);
+		// 	}
+		// };
+		// const showRegistrationResponse = async () => {
+		// 	const data = Register()
+		// 		.then(response => {
+		// 			alert("Zalogowano pomyślnie");
+		// 		})
+		// 		.catch(error => {
+		// 			alert(
+		// 				"Rejestracja nie powiodła się, wypełnij poprawnie formularz"
+		// 			);
+		// 		});
+		// };
+		// showRegistrationResponse();
 	};
 	render() {
 		return (
 			<div className="register">
-				<div className="register__inputCollection">
+				<form
+					onSubmit={this.handleRegister}
+					className="register__inputCollection"
+				>
 					<input
 						className="register__input"
 						name="first_name"
 						type="text"
 						label="first_name"
 						placeholder="Imię"
+						onChange={this.handleChange}
 					/>
 					<input
 						className="register__input"
@@ -52,6 +66,7 @@ class Register extends Component {
 						type="text"
 						label="last_name"
 						placeholder="Nazwisko"
+						onChange={this.handleChange}
 					/>
 					<input
 						className="register__input"
@@ -59,6 +74,7 @@ class Register extends Component {
 						type="text"
 						label="email"
 						placeholder="E-Mail"
+						onChange={this.handleChange}
 					/>
 					<input
 						className="register__input"
@@ -66,14 +82,15 @@ class Register extends Component {
 						type="password"
 						label="password"
 						placeholder="Hasło"
+						onChange={this.handleChange}
 					/>
-				</div>
+				</form>
 				<div className="register__buttons">
 					<button
-						className="register__send"
-						onClick={this.handleRegister()}
+						className="register__send btn pink lighten-1 z-depth-0"
+						onClick={this.handleRegister}
 					>
-						Zarejestruj sie
+						Zarejestruj się
 					</button>
 				</div>
 			</div>
