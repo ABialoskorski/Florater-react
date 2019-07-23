@@ -1,0 +1,30 @@
+h1 {
+	text-align: center;
+	font-size: 36px;
+}
+p {
+	font-size: 20px;
+	margin-bottom: 0;
+}
+.type__label {
+	border-left: 6px solid #3cd1c2;
+	font-size: 18px;
+	margin-top: 20px;
+}
+.type__searching {
+	font-weight: bold;
+}
+.type__latin,
+.type__polish,
+.type__family_latin,
+.type__family_polish,
+.type__raunkiaer,
+.type__synonyms {
+	padding: 4px 0 0 10px;
+}
+.type__geohist {
+	padding: 10px 0 0 10px;
+}
+.type__list {
+	text-align: center;
+}

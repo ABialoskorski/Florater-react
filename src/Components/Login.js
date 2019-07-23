@@ -7,6 +7,7 @@ class Login extends Component {
 	state = {
 		email: "",
 		password: "",
+		token: "",
 	};
 
 	handleChange = e => {
@@ -14,6 +15,11 @@ class Login extends Component {
 	};
 	handleLogin = e => {
 		e.preventDefault();
+		var Config = {
+			headers: {
+				Authorization: "JWT " + this.state.token,
+			},
+		};
 		console.log(this.state);
 		const link = "https://kfsz.pythonanywhere.com/api";
 
@@ -21,13 +27,7 @@ class Login extends Component {
 			email: this.state.email,
 			password: this.state.password,
 		};
-		let userdata = token => {
-			let Config = {
-				headers: {
-					Authorization: "JWT " + token,
-				},
-			};
-		};
+
 		const UserData = () => {
 			try {
 				return axios.get(link + "users/user-data/", Config);
@@ -36,7 +36,7 @@ class Login extends Component {
 			}
 		};
 
-		let log = () => {
+		var log = () => {
 			var token = "";
 			var JSONParsed = "";
 			var JSONdata = "";
@@ -49,14 +49,17 @@ class Login extends Component {
 				}
 			};
 
-			const showLoginResponse = async () => {
+			const showLoginResponse = () => {
 				const data = Login()
 					.then(response => {
-						token = response.data.token;
+						this.setState({ token: response.data.token });
+						console.log(this.state.token);
 						JSONdata = JSON.stringify(response);
 						JSONParsed = JSON.parse(JSONdata);
 						const cookies = new Cookies();
-						cookies.set("token", token, { path: "/login" });
+						cookies.set("loginToken", this.state.token, {
+							path: "/login",
+						});
 						this.userdata(token);
 					})
 					.catch(error => {
