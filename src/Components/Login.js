@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 import "./Login.css";
 
 class Login extends Component {
@@ -23,58 +23,49 @@ class Login extends Component {
 		let loginData = {
 			email: this.state.email,
 			password: this.state.password,
-		},
-			let userdata = (token) => {	
-				let Config = {
-					headers: {
-						Authorization: "JWT " + token,
-					},
-				};
-	
-				const UserData = () => {
-					try {
-						return axios.get(
-							link + "users/user-data/",
-							Config
-						);
-					} catch (error) {
-						alert(error);
-					}
-				};
-		}
-	}
-	
-		log() {
-		  
-	
-		  const Login = () => {
+		};
+		const userdata = token => {
+			let Config = {
+				headers: {
+					Authorization: "JWT " + token,
+				},
+			};
+		};
+		const UserData = () => {
 			try {
-			  return axios.post(
-				link + "users/obtain-token/", userLogin
-			  );
+				return axios.get(link + "users/user-data/", Config);
 			} catch (error) {
-			  alert(error);
+				alert(error);
 			}
-		  };
-	
-		  const showLoginResponse = async () => {
-			const data = Login()
-			  .then(response => {
-				token = response.data.token;
-				JSONdata = JSON.stringify(response);
-				JSONParsed = JSON.parse(JSONdata);
-				const cookies = new Cookies();
-				cookies.set('token', token, { path: '/login' });
-				this.userdata(this.setState.token);
-				
-			  })
-			  .catch(error => {
-				alert("Logowanie nie powiodło się, wprowadź poprawne dane");
-			  });
-		  };
-		  showLoginResponse();
-		}
+		};
 	};
+
+	log() {
+		const Login = () => {
+			try {
+				return axios.post(link + "users/obtain-token/", userdata);
+			} catch (error) {
+				alert(error);
+			}
+		};
+
+		const showLoginResponse = async () => {
+			const data = Login()
+				.then(response => {
+					token = response.data.token;
+					JSONdata = JSON.stringify(response);
+					JSONParsed = JSON.parse(JSONdata);
+					const cookies = new Cookies();
+					cookies.set("token", token, { path: "/login" });
+					this.userdata(this.setState.token);
+				})
+				.catch(error => {
+					alert("Logowanie nie powiodło się, wprowadź poprawne dane");
+				});
+		};
+		showLoginResponse();
+	}
+
 	render() {
 		return (
 			<div className="login">
@@ -107,9 +98,12 @@ class Login extends Component {
 						Zarejestruj się
 					</button>
 				</div>
+				<p class="login__register">
+					Nie posiadasz jeszcze konta?
+					<a href="/register"> Zarejestruj się</a>
+				</p>
 			</div>
 		);
 	}
 }
-
 export default Login;
