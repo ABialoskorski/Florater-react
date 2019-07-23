@@ -15,13 +15,17 @@ class Login extends Component {
 	};
 	handleLogin = e => {
 		e.preventDefault();
-		var Config = {
-			headers: {
-				Authorization: "JWT " + this.state.token,
-			},
+		var Config = {};
+		var userdata = token => {
+			var Config = {
+				headers: {
+					Authorization: "JWT " + token,
+				},
+			};
 		};
+
 		console.log(this.state);
-		const link = "https://kfsz.pythonanywhere.com/api";
+		const link = "https://kfsz.pythonanywhere.com/api/";
 
 		let loginData = {
 			email: this.state.email,
@@ -30,7 +34,7 @@ class Login extends Component {
 
 		const UserData = () => {
 			try {
-				return axios.get(link + "users/user-data/", Config);
+				return axios.get(`${link}users/user-data/`, Config);
 			} catch (error) {
 				alert(error);
 			}
@@ -60,7 +64,7 @@ class Login extends Component {
 						cookies.set("loginToken", this.state.token, {
 							path: "/login",
 						});
-						this.userdata(token);
+						userdata(token);
 					})
 					.catch(error => {
 						alert(
@@ -101,10 +105,10 @@ class Login extends Component {
 						className="login__send btn blue lighten-1 z-depth-0"
 						onClick={this.handleLogin}
 					>
-						Zarejestruj się
+						Zaloguj się
 					</button>
 				</div>
-				<p class="login__register">
+				<p className="login__register">
 					Nie posiadasz jeszcze konta?
 					<a href="/register"> Zarejestruj się</a>
 				</p>
