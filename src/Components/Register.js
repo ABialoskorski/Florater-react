@@ -11,39 +11,37 @@ class Register extends Component {
 	};
 
 	handleChange = e => {
-		this.setState({
-			[e.target.id]: e.target.value,
-		});
+		this.setState({ [e.target.name]: e.target.value });
 	};
 	handleRegister = e => {
 		e.preventDefault();
 		console.log(this.state);
-		// const link = "http://127.0.0.1:8000/";
-		// const axios = require("axios");
-		// const Register = () => {
-		// 	try {
-		// 		return axios.post(`${link}users/register/`, {
-		// 			first_name: this.first_name,
-		// 			last_name: this.last_name,
-		// 			password: this.password,
-		// 			email: this.email,
-		// 		});
-		// 	} catch (error) {
-		// 		alert(error);
-		// 	}
-		// };
-		// const showRegistrationResponse = async () => {
-		// 	const data = Register()
-		// 		.then(response => {
-		// 			alert("Zalogowano pomyślnie");
-		// 		})
-		// 		.catch(error => {
-		// 			alert(
-		// 				"Rejestracja nie powiodła się, wypełnij poprawnie formularz"
-		// 			);
-		// 		});
-		// };
-		// showRegistrationResponse();
+		let userData = {
+			first_name: this.state.first_name,
+			last_name: this.state.last_name,
+			email: this.state.email,
+			password: this.state.password,
+		};
+		const link = "https://kfsz.pythonanywhere.com/api/users/register/";
+		const Register = () => {
+			try {
+				return axios.post(link, userData);
+			} catch (error) {
+				alert(error);
+			}
+		};
+		const showRegistrationResponse = async () => {
+			const data = Register()
+				.then(response => {
+					alert("Zarejestrowano pomyślnie");
+				})
+				.catch(error => {
+					alert(
+						"Rejestracja nie powiodła się, wypełnij poprawnie formularz"
+					);
+				});
+		};
+		showRegistrationResponse();
 	};
 	render() {
 		return (
@@ -59,6 +57,7 @@ class Register extends Component {
 						label="first_name"
 						placeholder="Imię"
 						onChange={this.handleChange}
+						value={this.state.first_name}
 					/>
 					<input
 						className="register__input"
@@ -87,7 +86,7 @@ class Register extends Component {
 				</form>
 				<div className="register__buttons">
 					<button
-						className="register__send btn pink lighten-1 z-depth-0"
+						className="register__send btn blue lighten-1 z-depth-0"
 						onClick={this.handleRegister}
 					>
 						Zarejestruj się
