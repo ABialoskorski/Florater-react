@@ -7,9 +7,6 @@ class Login extends Component {
 	state = {
 		email: "",
 		password: "",
-		token: "",
-		JSONParsed: "",
-		JSONdata: "",
 	};
 
 	handleChange = e => {
@@ -24,7 +21,7 @@ class Login extends Component {
 			email: this.state.email,
 			password: this.state.password,
 		};
-		const userdata = token => {
+		let userdata = token => {
 			let Config = {
 				headers: {
 					Authorization: "JWT " + token,
@@ -38,33 +35,39 @@ class Login extends Component {
 				alert(error);
 			}
 		};
+
+		let log = () => {
+			var token = "";
+			var JSONParsed = "";
+			var JSONdata = "";
+
+			const Login = () => {
+				try {
+					return axios.post(link + "users/obtain-token/", loginData);
+				} catch (error) {
+					alert(error);
+				}
+			};
+
+			const showLoginResponse = async () => {
+				const data = Login()
+					.then(response => {
+						token = response.data.token;
+						JSONdata = JSON.stringify(response);
+						JSONParsed = JSON.parse(JSONdata);
+						const cookies = new Cookies();
+						cookies.set("token", token, { path: "/login" });
+						this.userdata(token);
+					})
+					.catch(error => {
+						alert(
+							"Logowanie nie powiodło się, wprowadź poprawne dane"
+						);
+					});
+			};
+			showLoginResponse();
+		};
 	};
-
-	log() {
-		const Login = () => {
-			try {
-				return axios.post(link + "users/obtain-token/", userdata);
-			} catch (error) {
-				alert(error);
-			}
-		};
-
-		const showLoginResponse = async () => {
-			const data = Login()
-				.then(response => {
-					token = response.data.token;
-					JSONdata = JSON.stringify(response);
-					JSONParsed = JSON.parse(JSONdata);
-					const cookies = new Cookies();
-					cookies.set("token", token, { path: "/login" });
-					this.userdata(this.setState.token);
-				})
-				.catch(error => {
-					alert("Logowanie nie powiodło się, wprowadź poprawne dane");
-				});
-		};
-		showLoginResponse();
-	}
 
 	render() {
 		return (
