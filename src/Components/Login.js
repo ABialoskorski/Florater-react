@@ -78,13 +78,13 @@ class Login extends Component {
 	};
 	render() {
 		console.log(this.props);
-		const tokener = this.props.token;
+		const token = this.props.token;
 		console.log(this.props.token);
-		console.log(tokener);
+		console.log(token);
 
 		return (
 			<div className="login">
-				<h1>{tokener}</h1>
+				<h1>{token}</h1>
 				<form onSubmit={this.handleLogin} className="login__inputCollection">
 					<input
 						className="login__input"
@@ -126,8 +126,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
 	return {
-		updatePost: currentToken => {
-			dispatch({ type: "UPDATE_POST", token: currentToken });
+		updatePost: token => {
+			dispatch({ type: "UPDATE_POST", token: token });
 		},
 	};
 };
