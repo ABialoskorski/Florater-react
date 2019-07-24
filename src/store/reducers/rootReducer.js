@@ -3,6 +3,9 @@ const initState = {
 };
 
 const rootReducer = (state = initState, action) => {
+	// if (action.type === "UPDATE_POST") {
+	// 	state.token = token;
+	// }
 	return state;
 };
 

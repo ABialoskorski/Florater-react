@@ -64,6 +64,8 @@ class Login extends Component {
 							path: "/login",
 						});
 						userdata(token);
+
+						this.props.updatePost(this.state.token);
 						alert("Zalogowano pomyślnie");
 					})
 					.catch(error => {
@@ -122,5 +124,15 @@ const mapStateToProps = state => {
 		token: state.token,
 	};
 };
+const mapDispatchToProps = dispatch => {
+	return {
+		updatePost: currentToken => {
+			dispatch({ type: "UPDATE_POST", token: currentToken });
+		},
+	};
+};
 
-export default connect(mapStateToProps)(Login);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Login);
