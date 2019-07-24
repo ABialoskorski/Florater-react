@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "./Login.css";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 class Login extends Component {
 	state = {
@@ -55,8 +57,8 @@ class Login extends Component {
 					.then(response => {
 						this.setState({ token: response.data.token });
 						console.log("TOKEN: " + this.state.token);
-						JSONdata = JSON.stringify(response);
-						JSONParsed = JSON.parse(JSONdata);
+						console.log(this.state);
+
 						const cookies = new Cookies();
 						cookies.set("loginToken", this.state.token, {
 							path: "/login",
@@ -72,10 +74,15 @@ class Login extends Component {
 		};
 		log();
 	};
-
 	render() {
+		console.log(this.props);
+		const tokener = this.props.token;
+		console.log(this.props.token);
+		console.log(tokener);
+
 		return (
 			<div className="login">
+				<h1>{tokener}</h1>
 				<form onSubmit={this.handleLogin} className="login__inputCollection">
 					<input
 						className="login__input"
@@ -104,10 +111,16 @@ class Login extends Component {
 				</div>
 				<p className="login__register">
 					Nie posiadasz jeszcze konta?
-					<a href="/register"> Zarejestruj się</a>
+					<NavLink to="/register"> Zarejestruj się</NavLink>
 				</p>
 			</div>
 		);
 	}
 }
-export default Login;
+const mapStateToProps = state => {
+	return {
+		token: state.token,
+	};
+};
+
+export default connect(mapStateToProps)(Login);
