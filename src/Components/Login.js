@@ -31,7 +31,6 @@ class Login extends Component {
 			email: this.state.email,
 			password: this.state.password,
 		};
-
 		const UserData = () => {
 			try {
 				return axios.get(`${link}users/user-data/`, Config);
@@ -44,7 +43,6 @@ class Login extends Component {
 			var token = "";
 			var JSONParsed = "";
 			var JSONdata = "";
-
 			const Login = () => {
 				try {
 					return axios.post(link + "users/obtain-token/", loginData);
@@ -52,12 +50,11 @@ class Login extends Component {
 					alert(error);
 				}
 			};
-
 			const showLoginResponse = () => {
 				const data = Login()
 					.then(response => {
 						this.setState({ token: response.data.token });
-						console.log(this.state.token);
+						console.log("TOKEN: " + this.state.token);
 						JSONdata = JSON.stringify(response);
 						JSONParsed = JSON.parse(JSONdata);
 						const cookies = new Cookies();
@@ -65,24 +62,21 @@ class Login extends Component {
 							path: "/login",
 						});
 						userdata(token);
+						alert("Zalogowano pomyślnie");
 					})
 					.catch(error => {
-						alert(
-							"Logowanie nie powiodło się, wprowadź poprawne dane"
-						);
+						alert("Logowanie nie powiodło się, wprowadź poprawne dane");
 					});
 			};
 			showLoginResponse();
 		};
+		log();
 	};
 
 	render() {
 		return (
 			<div className="login">
-				<form
-					onSubmit={this.handleLogin}
-					className="login__inputCollection"
-				>
+				<form onSubmit={this.handleLogin} className="login__inputCollection">
 					<input
 						className="login__input"
 						name="email"
