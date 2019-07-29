@@ -26,7 +26,6 @@ class Login extends Component {
 			};
 		};
 
-		console.log(this.state);
 		const link = "https://kfsz.pythonanywhere.com/api/";
 
 		let loginData = {
@@ -57,8 +56,6 @@ class Login extends Component {
 					.then(response => {
 						this.setState({ token: response.data.token });
 						console.log("TOKEN: " + this.state.token);
-						console.log(this.state);
-
 						const cookies = new Cookies();
 						cookies.set("loginToken", this.state.token, {
 							path: "/login",
@@ -77,11 +74,7 @@ class Login extends Component {
 		log();
 	};
 	render() {
-		console.log(this.props);
 		const token = this.props.token;
-		console.log(this.props.token);
-		console.log(token);
-
 		return (
 			<div className="login">
 				<h1>{token}</h1>
