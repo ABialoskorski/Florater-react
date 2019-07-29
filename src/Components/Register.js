@@ -36,9 +36,7 @@ class Register extends Component {
 					alert("Zarejestrowano pomyślnie");
 				})
 				.catch(error => {
-					alert(
-						"Rejestracja nie powiodła się, wypełnij poprawnie formularz"
-					);
+					alert("Rejestracja nie powiodła się, wypełnij poprawnie formularz");
 				});
 		};
 		showRegistrationResponse();
@@ -57,7 +55,6 @@ class Register extends Component {
 						label="first_name"
 						placeholder="Imię"
 						onChange={this.handleChange}
-						value={this.state.first_name}
 					/>
 					<input
 						className="register__input"
