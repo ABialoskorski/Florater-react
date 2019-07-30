@@ -14,14 +14,18 @@ const Navbar = () => {
 							Home
 						</NavLink>
 					</li>
-					<li>
-						<NavLink to="/type">Gatunki</NavLink>
-					</li>
+
 					<li>
 						<NavLink to="/register">Register</NavLink>
 					</li>
 					<li>
 						<NavLink to="/login">Login</NavLink>
+					</li>
+					<li>
+						<NavLink to="/form">Formularz</NavLink>
+					</li>
+					<li>
+						<NavLink to="/type">Gatunki</NavLink>
 					</li>
 					<li>
 						<NavLink to="/data">Data</NavLink>

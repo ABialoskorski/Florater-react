@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import "./Type.css";
 
 class Type extends Component {

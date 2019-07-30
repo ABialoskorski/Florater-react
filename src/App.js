@@ -6,6 +6,7 @@ import Register from "./Components/Register";
 import Home from "./Components/Home";
 import Data from "./Components/Data";
 import Type from "./Components/Type";
+import Form from "./Components/Form";
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/data" component={Data} />
 						<Route exact path="/type" component={Type} />
+						<Route exact path="/form" component={Form} />
 					</Switch>
 				</div>
 			</BrowserRouter>
