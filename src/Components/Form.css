@@ -1,0 +1,23 @@
+.form__inputCollection {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	margin: 40px 200px 0 500px;
+	width: 40%;
+}
+.form__input {
+	margin-top: 20px;
+	padding-bottom: 5px;
+	font-size: 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.form__title {
+	margin-top: 20px;
+	font-size: 24px;
+}
+.form__send {
+	margin: 20px 200px 0 800px;
+}
+::placeholder {
+	color: gray;
+}
