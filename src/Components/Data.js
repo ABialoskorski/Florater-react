@@ -18,8 +18,6 @@ class Data extends Component {
 	render() {
 		return (
 			<ul>
-				<a href="https://via.placeholder.com/150/24f355" />
-
 				{this.state.data.map(data => (
 					<div key={data.id}>
 						<li>{data.title}</li>
