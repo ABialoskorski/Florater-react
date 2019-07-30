@@ -120,7 +120,7 @@ class Form extends Component {
 					<input
 						className="form__input"
 						name="user_date"
-						type="text"
+						type="date"
 						placeholder="Data"
 						onChange={this.handleChange}
 					/>
