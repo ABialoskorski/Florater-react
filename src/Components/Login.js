@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import "./Login.css";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { updateToken } from "../actions/updateActions";
 
 class Login extends Component {
 	state = {
@@ -120,11 +121,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		updatePost: token => {
-			dispatch({ type: "UPDATE_POST", token: token });
+			{
+				dispatch(updateToken(token));
+			}
 		},
 	};
 };
-
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps

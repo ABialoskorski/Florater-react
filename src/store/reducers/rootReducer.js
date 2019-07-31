@@ -3,7 +3,7 @@ const initState = {
 };
 
 const rootReducer = (state = initState, action) => {
-	if (action.type === "UPDATE_POST") {
+	if (action.type === "UPDATE_TOKEN") {
 		state.token = action.token;
 		console.log("STATE Z REDUCERA: " + state.token);
 	}

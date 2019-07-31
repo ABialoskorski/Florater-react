@@ -16,7 +16,7 @@
 	font-size: 24px;
 }
 .form__send {
-	margin: 20px 200px 0 800px;
+	margin: 10px 200px 10px 800px;
 }
 ::placeholder {
 	color: gray;
